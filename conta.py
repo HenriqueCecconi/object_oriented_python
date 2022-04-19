@@ -1,4 +1,3 @@
-
 class Conta():
     
     def __init__(self, numero, titular, saldo, limite):
@@ -15,21 +14,27 @@ class Conta():
         self.__saldo += valor
 
     def saca(self, valor):
-        self.__saldo -= valor
+        if(self.__pode_sacar(valor)):
+            self.__saldo -= valor
+            print("Saque efetuado.")
+        else:
+            print("Saldo insuficiente.")
 
-    def transfere(self, valor, destino):
+    def __pode_sacar(self, valor_a_sacar):
+        valor_disponivel = (self.__saldo + self.__limite)
+        return (valor_a_sacar <= valor_disponivel)
+
+    def transfere(self, valor, obj_destino):
         self.saca(valor)
-        destino.deposita(valor)
-
-    def get_numero(self):
-        return self.__numero
-
-    def get_titular(self):
-        return self.__titular
+        obj_destino.deposita(valor)
 
     @property
-    def get_saldo(self):
-        return self.__saldo
+    def numero(self):
+        return self.__numero
+
+    @property
+    def titular(self):
+        return self.__titular
 
     @property
     def limite(self):
@@ -38,3 +43,7 @@ class Conta():
     @limite.setter
     def limite(self):
         return self.__limite
+
+    @staticmethod
+    def codigo_banco():
+        return "001"
