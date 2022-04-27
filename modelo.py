@@ -19,12 +19,21 @@ class Programa:
     def dar_like(self):
         self._likes += 1
 
+    def imprime(self):
+        print(f'{self.nome} - {self.ano} - {self.likes} Likes')
+
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
         super().__init__(nome, ano)
         self.duracao = duracao
 
+    def imprime(self):
+        print(f'{self.nome} - {self.ano} - {self.duracao} Minutos - {self.likes} Likes')
+
 class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
         super().__init__(nome, ano)
         self.temporadas = temporadas
+
+    def imprime(self):
+        print(f'{self.nome} - {self.ano} - {self.temporadas} Temporadas - {self.likes} Likes')
